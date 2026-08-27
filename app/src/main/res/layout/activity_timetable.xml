@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/background"
+    tools:theme="@style/Theme.Material3.Light.NoActionBar">
+
+    <TextView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center_vertical"
+        android:text="←  My Timetable"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:clickable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/dayTabs"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="MON     TUE     WED     THU     FRI"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ScrollView
+        android:id="@+id/scrollViewTimetable"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_card"
+        app:layout_constraintTop_toBottomOf="@id/dayTabs"
+        app:layout_constraintBottom_toTopOf="@id/btnWeekly"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/timetableContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:text="Your timetable will appear here."
+            android:textColor="@color/text"
+            android:textSize="15sp"/>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnWeekly"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_margin="16dp"
+        android:text="VIEW WEEKLY TIMETABLE"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:backgroundTint="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
