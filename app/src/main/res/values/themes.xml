@@ -8,4 +8,5 @@
         <item name="colorPrimary">@color/blue</item>
         <item name="colorSecondary">@color/blue</item>
     </style>
+    <style name="Theme.Mad_assignment" parent="Theme.MAD_ASSIGNMENT" />
 </resources>

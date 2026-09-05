@@ -1,9 +1,9 @@
 package com.example.mad_assignment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.CompoundButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -17,6 +17,7 @@ class SettingsActivity : AppCompatActivity() {
 
         val switchDark = findViewById<CompoundButton>(R.id.switchDark)
         val switchNotification = findViewById<CompoundButton>(R.id.switchNotification)
+        val tvAbout = findViewById<TextView>(R.id.tvAbout)
         val prefs = getSharedPreferences("timetable_prefs", MODE_PRIVATE)
 
         val isDarkMode = prefs.getBoolean("dark_mode", false)
@@ -37,5 +38,13 @@ class SettingsActivity : AppCompatActivity() {
             val status = if (isChecked) "enabled" else "disabled"
             Toast.makeText(this, "Class reminders $status", Toast.LENGTH_SHORT).show()
         }
+
+        tvAbout.text = "ABOUT APP\n\n" +
+                "Project: AI Timetable Generator\n" +
+                "Author: Rudra Patel\n" +
+                "Version: 1.0\n" +
+                "Architecture: Kotlin + XML\n" +
+                "Engine: Rule-Based AI\n" +
+                "Mode: 100% Offline (No Firebase, No External API)"
     }
 }

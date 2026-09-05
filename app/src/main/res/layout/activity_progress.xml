@@ -14,7 +14,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="20dp"
         android:gravity="center_vertical"
-        android:text="←  Progress"
+        android:text="←  Progress &amp; Analytics"
         android:textColor="@color/blue"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -22,19 +22,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
-        android:id="@+id/progressContainer"
+    <ScrollView
+        android:id="@+id/scrollViewProgress"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
         android:background="@drawable/bg_card"
-        android:padding="18dp"
-        android:text="SUBJECT PROGRESS&#10;&#10;Android Development     80%&#10;&#10;Machine Learning       65%&#10;&#10;Cryptography            50%"
-        android:textColor="@color/text"
-        android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/btnBack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/progressContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:textColor="@color/text"
+            android:textSize="15sp"/>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
