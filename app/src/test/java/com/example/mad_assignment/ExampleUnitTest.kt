@@ -4,44 +4,42 @@ import org.junit.Test
 import org.junit.Assert.*
 
 class ExampleUnitTest {
+
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
 
     @Test
-    fun subject_dataClass_holdsValues() {
-        val subject = Subject(
-            name = "Android Development",
-            teacher = "Prof. Patel",
-            day = "Monday",
-            startTime = "09:00 AM",
-            endTime = "10:00 AM",
-            room = "Lab-1"
-        )
+    fun timetable_cyclesEnteredSubjectsCorrectly() {
+        val entered = arrayOf("Maths", "Physics", "", "", "")
+        val valid = entered.filter { it.isNotBlank() }
+        val days = arrayOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
 
-        assertEquals("Android Development", subject.name)
-        assertEquals("Prof. Patel", subject.teacher)
-        assertEquals("Monday", subject.day)
-        assertEquals("09:00 AM", subject.startTime)
-        assertEquals("10:00 AM", subject.endTime)
-        assertEquals("Lab-1", subject.room)
+        assertEquals(2, valid.size)
+
+        // Day 0..4 distribution with startIndex = 0
+        val scheduleDay0 = Array(5) { i -> valid[i % valid.size] }
+        assertEquals("Maths", scheduleDay0[0])
+        assertEquals("Physics", scheduleDay0[1])
+        assertEquals("Maths", scheduleDay0[2])
+        assertEquals("Physics", scheduleDay0[3])
+        assertEquals("Maths", scheduleDay0[4])
+
+        // Regenerate with startIndex = 1
+        val scheduleDay1 = Array(5) { i -> valid[(i + 1) % valid.size] }
+        assertEquals("Physics", scheduleDay1[0])
+        assertEquals("Maths", scheduleDay1[1])
+        assertEquals("Physics", scheduleDay1[2])
+        assertEquals("Maths", scheduleDay1[3])
+        assertEquals("Physics", scheduleDay1[4])
     }
 
     @Test
-    fun standardSlots_areDefinedCorrectly() {
-        val slots = SubjectRepository.STANDARD_SLOTS
-        assertTrue(slots.isNotEmpty())
-        assertEquals(5, slots.size)
-        assertEquals("09:00 AM", slots[0].start)
-        assertEquals("10:00 AM", slots[0].end)
-    }
-
-    @Test
-    fun weekdays_containStandardDays() {
-        val weekdays = SubjectRepository.WEEKDAYS
-        assertTrue(weekdays.contains("Monday"))
-        assertTrue(weekdays.contains("Friday"))
-        assertEquals(6, weekdays.size)
+    fun timetable_handlesAllEmptySubjects() {
+        val entered = arrayOf("", "", "", "", "")
+        val valid = entered.filter { it.isNotBlank() }
+        val defaultText = if (valid.isEmpty()) "Free / Self Study" else valid[0]
+        assertEquals("Free / Self Study", defaultText)
     }
 }

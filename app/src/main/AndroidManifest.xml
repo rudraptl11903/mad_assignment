@@ -22,23 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddSubjectActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".SubjectsActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name=".TimetableActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ProgressActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".SettingsActivity"
+            android:name=".AboutActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>
