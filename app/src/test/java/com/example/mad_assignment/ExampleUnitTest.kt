@@ -11,35 +11,61 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun timetable_cyclesEnteredSubjectsCorrectly() {
-        val entered = arrayOf("Maths", "Physics", "", "", "")
-        val valid = entered.filter { it.isNotBlank() }
-        val days = arrayOf("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+    fun subject_modelCreation_isCorrect() {
+        val subject = Subject(
+            name = "Android Development",
+            teacher = "Prof. Patel",
+            day = "Monday",
+            startTime = "09:00 AM",
+            endTime = "10:00 AM",
+            room = "A-101"
+        )
 
-        assertEquals(2, valid.size)
-
-        // Day 0..4 distribution with startIndex = 0
-        val scheduleDay0 = Array(5) { i -> valid[i % valid.size] }
-        assertEquals("Maths", scheduleDay0[0])
-        assertEquals("Physics", scheduleDay0[1])
-        assertEquals("Maths", scheduleDay0[2])
-        assertEquals("Physics", scheduleDay0[3])
-        assertEquals("Maths", scheduleDay0[4])
-
-        // Regenerate with startIndex = 1
-        val scheduleDay1 = Array(5) { i -> valid[(i + 1) % valid.size] }
-        assertEquals("Physics", scheduleDay1[0])
-        assertEquals("Maths", scheduleDay1[1])
-        assertEquals("Physics", scheduleDay1[2])
-        assertEquals("Maths", scheduleDay1[3])
-        assertEquals("Physics", scheduleDay1[4])
+        assertEquals("Android Development", subject.name)
+        assertEquals("Prof. Patel", subject.teacher)
+        assertEquals("Monday", subject.day)
+        assertEquals("09:00 AM", subject.startTime)
+        assertEquals("10:00 AM", subject.endTime)
+        assertEquals("A-101", subject.room)
     }
 
     @Test
-    fun timetable_handlesAllEmptySubjects() {
-        val entered = arrayOf("", "", "", "", "")
-        val valid = entered.filter { it.isNotBlank() }
-        val defaultText = if (valid.isEmpty()) "Free / Self Study" else valid[0]
-        assertEquals("Free / Self Study", defaultText)
+    fun subject_daysList_containsAllWorkingDays() {
+        val days = SubjectRepository.DAYS
+        assertEquals(6, days.size)
+        assertEquals("Monday", days[0])
+        assertEquals("Tuesday", days[1])
+        assertEquals("Wednesday", days[2])
+        assertEquals("Thursday", days[3])
+        assertEquals("Friday", days[4])
+        assertEquals("Saturday", days[5])
+    }
+
+    @Test
+    fun dayWiseGrouping_handlesEmptyAndNonEmptyDays() {
+        val subjects = listOf(
+            Subject("Android Development", "Prof. Patel", "Monday", "09:00 AM", "10:00 AM", "A-101"),
+            Subject("Database Management", "Prof. Shah", "Tuesday", "10:00 AM", "11:00 AM", "B-202")
+        )
+
+        val mondaySubjects = subjects.filter { it.day.equals("Monday", ignoreCase = true) }
+        val wednesdaySubjects = subjects.filter { it.day.equals("Wednesday", ignoreCase = true) }
+
+        assertEquals(1, mondaySubjects.size)
+        assertEquals("Android Development", mondaySubjects[0].name)
+        assertEquals("Prof. Patel", mondaySubjects[0].teacher)
+        assertEquals("A-101", mondaySubjects[0].room)
+
+        assertTrue(wednesdaySubjects.isEmpty())
+    }
+
+    @Test
+    fun subject_dataClassEquality_isCorrect() {
+        val s1 = Subject("Math", "Dr. Rao", "Monday", "09:00 AM", "10:00 AM", "101")
+        val s2 = Subject("Math", "Dr. Rao", "Monday", "09:00 AM", "10:00 AM", "101")
+        val s3 = Subject("Physics", "Dr. Rao", "Monday", "09:00 AM", "10:00 AM", "101")
+
+        assertEquals(s1, s2)
+        assertNotEquals(s1, s3)
     }
 }
