@@ -43,6 +43,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvIcon" />
 
+
         <TextView
             android:id="@+id/tvSubtitle"
             android:layout_width="0dp"
