@@ -8,11 +8,21 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
-        findViewById<Button>(R.id.btnAddSubject).setOnClickListener {
-            val intent = Intent(this, AddSubjectActivity::class.java)
+        val btnAddSubject =
+            findViewById<Button>(R.id.btnAddSubject)
+
+        btnAddSubject.setOnClickListener {
+
+            val intent = Intent(
+                this,
+                AddSubjectActivity::class.java
+            )
+
             startActivity(intent)
         }
     }
