@@ -1,141 +1,537 @@
-# AI Timetable Generator
+Timetable Management App
 
-An Android application developed using **Kotlin** and **XML** to help students organize subjects and generate a simple timetable using rule-based logic.
+A simple **Mobile Application Development (MAD)** project made with Android Studio using Kotlin and XML.
 
-> **Note:** This project uses rule-based timetable generation for academic/assignment purposes. It does not use an external machine-learning model.
+The application allows a student to add subjects with teacher, day, time, and room details. The saved subjects are then displayed automatically in a **Monday-to-Saturday timetable**.
+
+## Project Objective
+
+The main objective of this project is to demonstrate basic Android application development concepts:
+
+- Activities
+- XML user interface
+- Kotlin programming
+- User input
+- Form validation
+- Intent navigation
+- Spinner
+- SharedPreferences
+- JSON data storage
+- Dynamic timetable generation
+
+The project is designed to be simple and easy to understand for a college practical or viva.
+
+---
 
 ## Features
 
-- Add student name and subjects
-- Rule-based weekly timetable generation (Monday to Friday)
-- Dynamic timetable rotation / regeneration
-- About project information screen
-- Clean, scrollable Material UI design with card elements
-- Offline functionality
-- No Firebase required
-- No external API required
+- Add a new subject
+- Enter teacher name
+- Select a day from Monday to Saturday
+- Enter start time manually
+- Enter end time manually
+- Enter room number
+- Validate required fields
+- Save subjects locally
+- Display subjects day-wise
+- Add multiple subjects
+- View empty days as **No classes scheduled**
+- Add more subjects from the timetable screen
+- Works without an internet connection
 
-## Technology
-
-| Technology | Purpose |
-|---|---|
-| Kotlin | Application programming |
-| XML | User interface |
-| Android Studio | Development IDE |
-| ConstraintLayout | Responsive UI layout |
-| Material Components | Modern styling and theming |
-| Gradle | Build management |
-
-## Project Structure
-
-```text
-AI-Timetable-Generator/
-│
-├── app/
-│   ├── src/main/
-│   │   ├── java/com/example/mad_assignment/
-│   │   │   ├── MainActivity.kt
-│   │   │   ├── TimetableActivity.kt
-│   │   │   └── AboutActivity.kt
-│   │   │
-│   │   ├── res/
-│   │   │   ├── drawable/
-│   │   │   ├── layout/
-│   │   │   ├── mipmap-*/
-│   │   │   └── values/
-│   │   │
-│   │   └── AndroidManifest.xml
-│   │
-│   └── build.gradle.kts
-│
-├── gradle/
-├── build.gradle.kts
-├── gradle.properties
-├── settings.gradle.kts
-├── gradlew
-├── gradlew.bat
-└── .gitignore
-```
-
-## Main Activities
-
-### MainActivity
-Main/home screen where students enter their name and subjects, with options to generate a timetable or view project info.
-
-```text
-app/src/main/java/com/example/mad_assignment/MainActivity.kt
-```
-
-### TimetableActivity
-Displays the weekly timetable from Monday to Friday, distributing entered subjects across weekdays, with options to regenerate (rotate) the timetable or return home.
-
-```text
-app/src/main/java/com/example/mad_assignment/TimetableActivity.kt
-```
-
-### AboutActivity
-Displays information about the application, technologies used, and academic purpose.
-
-```text
-app/src/main/java/com/example/mad_assignment/AboutActivity.kt
-```
+---
 
 ## Application Flow
 
 ```text
-       Start Application
-              ↓
-         MainActivity
-      (Enter Subjects)
-        ↙           ↘
-TimetableActivity    AboutActivity
-(View Timetable)     (Project Info)
+        ┌─────────────────────────┐
+        │      MainActivity       │
+        │                         │
+        │     ADD SUBJECT         │
+        └────────────┬────────────┘
+                     │
+                     ▼
+        ┌─────────────────────────┐
+        │   AddSubjectActivity   │
+        │                         │
+        │ Subject Name            │
+        │ Teacher Name            │
+        │ Day                     │
+        │ Start Time              │
+        │ End Time                │
+        │ Room Number             │
+        │                         │
+        │     ADD SUBJECT         │
+        └────────────┬────────────┘
+                     │
+                     ▼
+        ┌─────────────────────────┐
+        │    TimetableActivity    │
+        │                         │
+        │ Monday                  │
+        │ Tuesday                 │
+        │ Wednesday               │
+        │ Thursday                │
+        │ Friday                  │
+        │ Saturday                │
+        └─────────────────────────┘
 ```
 
-## Rule-Based AI Logic
+---
 
-For this academic project, the **AI Timetable Generator** uses predefined rules rather than a heavy ML model:
+## Screens
 
-- Collects entered student subjects and filters non-empty inputs
-- Evenly distributes subjects across Monday to Friday
-- Supports rotation/regeneration of slots on user request
-- Automatically assigns "Free / Self Study" when slots are unassigned
+### 1. Main Screen
 
-## Installation
+**Activity:** `MainActivity.kt`  
+**Layout:** `activity_main.xml`
 
-### Requirements
+The main screen contains:
 
-- Android Studio (Ladybug or newer recommended)
-- Android SDK (API 36 / 37 compatible)
-- JDK 11 or higher
-- Android device or emulator
+- Project title: **Timetable Management**
+- Short project description
+- **ADD SUBJECT** button
 
-### Run the Project
+Clicking **ADD SUBJECT** opens the Add Subject screen.
 
-1. Clone the repository:
+---
 
-```bash
-git clone https://github.com/rudraptl11903/mad_assignment.git
+### 2. Add Subject Screen
+
+**Activity:** `AddSubjectActivity.kt`  
+**Layout:** `activity_add_subject.xml`
+
+The user enters the following information:
+
+| Field | Description |
+|---|---|
+| Subject Name | Name of the subject |
+| Teacher Name | Name of the teacher |
+| Day | Monday to Saturday |
+| Start Time | Class starting time |
+| End Time | Class ending time |
+| Room Number | Classroom or laboratory number |
+
+Example:
+
+```text
+Subject Name : Android Development
+Teacher Name : Prof. Patel
+Day          : Monday
+Start Time   : 09:00 AM
+End Time     : 10:00 AM
+Room Number  : A-101
 ```
 
-2. Open the project in Android Studio.
-3. Allow Gradle to sync.
-4. Connect an Android device or start an emulator.
-5. Click **Run ▶**.
+### Validation
 
-## Academic Information
+The application checks the required fields before saving.
 
-**Project:** AI Timetable Generator  
-**Platform:** Android  
-**Language:** Kotlin  
-**UI:** XML  
-**IDE:** Android Studio  
-**Mode:** Offline  
+Possible messages include:
+
+```text
+Please enter subject name
+Please enter teacher name
+Please enter start time
+Please enter end time
+Please enter room number
+```
+
+After successful validation, the subject is saved and the timetable screen opens.
+
+---
+
+### 3. Timetable Screen
+
+**Activity:** `TimetableActivity.kt`  
+**Layout:** `activity_timetable.xml`
+
+The timetable displays all six days:
+
+```text
+Monday
+────────────────────────
+Android Development
+09:00 AM - 10:00 AM
+Prof. Patel
+Room: A-101
+
+Tuesday
+────────────────────────
+Database Management
+10:00 AM - 11:00 AM
+Prof. Shah
+Room: B-202
+
+Wednesday
+────────────────────────
+No classes scheduled
+```
+
+The screen also provides:
+
+- **Home** button
+- **+ Add Subject** button
+
+The timetable is generated dynamically from the subjects stored on the device.
+
+---
+
+## Data Storage
+
+The project uses **SharedPreferences** for local storage.
+
+No external database is used.
+
+The data is stored as JSON.
+
+Example structure:
+
+```text
+SharedPreferences
+       │
+       ▼
+   JSON Array
+       │
+       ▼
+    Subjects
+       │
+       ▼
+TimetableActivity
+```
+
+The `SubjectRepository.kt` class handles:
+
+- Getting saved subjects
+- Saving subjects
+- Adding a new subject
+- Clearing subjects
+
+---
+
+## Project Files
+
+```text
+mad_Assignment/
+│
+├── app/
+│   └── src/
+│       └── main/
+│           │
+│           ├── AndroidManifest.xml
+│           │
+│           ├── java/
+│           │   └── com/example/mad_assignment/
+│           │       ├── MainActivity.kt
+│           │       ├── AddSubjectActivity.kt
+│           │       ├── TimetableActivity.kt
+│           │       ├── Subject.kt
+│           │       └── SubjectRepository.kt
+│           │
+│           └── res/
+│               ├── drawable/
+│               │   ├── bg_card.xml
+│               │   ├── bg_light_blue.xml
+│               │   ├── ic_launcher_background.xml
+│               │   └── ic_launcher_foreground.xml
+│               │
+│               ├── layout/
+│               │   ├── activity_main.xml
+│               │   ├── activity_add_subject.xml
+│               │   └── activity_timetable.xml
+│               │
+│               ├── values/
+│               │   ├── colors.xml
+│               │   ├── strings.xml
+│               │   └── themes.xml
+│               │
+│               ├── values-night/
+│               │   └── themes.xml
+│               │
+│               └── xml/
+│                   ├── backup_rules.xml
+│                   └── data_extraction_rules.xml
+│
+├── build.gradle.kts
+├── settings.gradle.kts
+└── gradle.properties
+```
+
+---
+
+## Main Kotlin Classes
+
+### MainActivity.kt
+
+Responsible for the main screen.
+
+```text
+MainActivity
+     │
+     └── ADD SUBJECT
+              │
+              ▼
+     AddSubjectActivity
+```
+
+### AddSubjectActivity.kt
+
+Responsible for:
+
+1. Reading user input
+2. Validating the input
+3. Creating a `Subject` object
+4. Saving the subject
+5. Opening the timetable screen
+
+### Subject.kt
+
+This is the data model for a subject.
+
+It contains:
+
+```text
+name
+teacher
+day
+startTime
+endTime
+room
+```
+
+### SubjectRepository.kt
+
+Responsible for local subject storage using SharedPreferences and JSON.
+
+Main functions:
+
+```text
+getSubjects()
+saveSubjects()
+addSubject()
+clearSubjects()
+```
+
+### TimetableActivity.kt
+
+Responsible for:
+
+1. Loading saved subjects
+2. Checking the selected day
+3. Grouping subjects by day
+4. Creating the timetable dynamically
+5. Showing **No classes scheduled** for an empty day
+
+---
+
+## Technologies Used
+
+| Technology | Use |
+|---|---|
+| Android Studio | Development IDE |
+| Kotlin | Application logic |
+| XML | User interface |
+| ConstraintLayout | Screen layout |
+| SharedPreferences | Local storage |
+| JSON | Store subject data |
+| Material Components | Android UI components |
+
+---
+
+## Requirements
+
+- Android Studio
+- Android SDK
+- JDK
+- Android emulator or physical Android phone
+
+The application does not require an internet connection while it is running.
+
+---
+
+## How to Run
+
+1. Extract the project ZIP.
+2. Open **Android Studio**.
+3. Select **File → Open**.
+4. Select the `mad_Assignment` project folder.
+5. Allow Gradle synchronization to complete.
+6. Connect an Android phone or start an emulator.
+7. Click **Run ▶**.
+8. The application will open on the Main screen.
+
+---
+
+## How to Use
+
+### Add a Subject
+
+1. Open the application.
+2. Click **ADD SUBJECT**.
+3. Enter the subject name.
+4. Enter the teacher name.
+5. Select the day.
+6. Enter the start time.
+7. Enter the end time.
+8. Enter the room number.
+9. Click **ADD SUBJECT**.
+10. The timetable will be displayed.
+
+### Add Another Subject
+
+From the timetable screen:
+
+```text
++ Add Subject
+```
+
+can be selected to add another subject.
+
+The timetable is refreshed when the user returns to the timetable screen.
+
+---
+
+## Example
+
+### Input
+
+```text
+Subject Name : Mobile Application Development
+Teacher Name : Prof. Shah
+Day          : Monday
+Start Time   : 09:00 AM
+End Time     : 10:00 AM
+Room Number  : A-101
+```
+
+### Output
+
+```text
+Monday
+────────────────────────
+Mobile Application Development
+09:00 AM - 10:00 AM
+Prof. Shah
+Room: A-101
+```
+
+If no subject exists for a particular day:
+
+```text
+Wednesday
+────────────────────────
+No classes scheduled
+```
+
+---
+
+## Offline Support
+
+The application stores subject information locally using SharedPreferences.
+
+Therefore:
+
+- No server is required
+- No API is required
+- No Firebase is required
+- No online account is required
+- No internet connection is required for normal application use
+
+---
+
+## Academic Concepts Demonstrated
+
+This project demonstrates the following Mobile Application Development concepts:
+
+- Activity creation
+- Activity navigation using Intent
+- XML layouts
+- ConstraintLayout
+- EditText
+- Button
+- TextView
+- Spinner
+- Toast messages
+- Data classes
+- SharedPreferences
+- JSON
+- Dynamic UI creation
+- Input validation
+- Local data management
+
+---
+
+## Viva Questions
+
+### What is the purpose of this project?
+
+The purpose is to create a simple Android application that allows students to add subjects and view them in a day-wise timetable.
+
+### Which programming language is used?
+
+**Kotlin**.
+
+### Which technology is used for the UI?
+
+**XML with ConstraintLayout**.
+
+### How many main activities are used?
+
+There are three main activities:
+
+```text
+MainActivity
+AddSubjectActivity
+TimetableActivity
+```
+
+### How is data stored?
+
+Data is stored locally using **SharedPreferences** in JSON format.
+
+### Is a database used?
+
+No. The project uses SharedPreferences instead of a database.
+
+### Is Firebase used?
+
+No.
+
+### Is an API used?
+
+No.
+
+### Does the app need internet?
+
+No.
+
+### How does the timetable know which subject belongs to which day?
+
+Each subject stores a `day` value. `TimetableActivity` compares that value with the six available days and displays the matching subjects.
+
+### Can multiple subjects be added?
+
+Yes. Each new subject is added to the locally saved subject list.
+
+---
+
+## Project Purpose
+
+This project is intended for **Mobile Application Development (MAD)** academic work and demonstrates basic Android development using Kotlin, XML, Activities, local storage, and dynamic timetable generation.
+
+---
 
 ## Author
 
-**Rudra Patel**
+**24012011122_RUDRA_PATEL**
 
-## License
+Developed using:
 
-This project is created for educational and academic purposes.
+```text
+Android Studio
+Kotlin
+XML
+ConstraintLayout
+SharedPreferences
+JSON
+```
