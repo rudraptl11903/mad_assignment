@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,6 +15,8 @@
         android:paddingTop="16dp"
         android:paddingEnd="20dp"
         android:paddingBottom="32dp">
+
+        <!-- Back -->
 
         <TextView
             android:id="@+id/btnBack"
@@ -28,6 +32,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Title -->
+
         <TextView
             android:id="@+id/tvScreenTitle"
             android:layout_width="0dp"
@@ -41,81 +47,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnBack" />
 
-        <!-- Subject Name -->
+        <!-- Subject Label -->
+
         <TextView
             android:id="@+id/labelSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Subject Name"
+            android:layout_marginTop="24dp"
+            android:text="Select Subject"
             android:textColor="@color/text"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvScreenTitle" />
 
-        <EditText
-            android:id="@+id/etSubject"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/bg_card"
-            android:hint="e.g., Android Development"
-            android:inputType="textCapWords"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
-            android:textColor="@color/text"
-            android:textColorHint="@color/gray"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelSubject" />
-
-        <!-- Teacher Name -->
-        <TextView
-            android:id="@+id/labelTeacher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Teacher Name"
-            android:textColor="@color/text"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etSubject" />
-
-        <EditText
-            android:id="@+id/etTeacher"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/bg_card"
-            android:hint="e.g., Prof. Patel"
-            android:inputType="textPersonName|textCapWords"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
-            android:textColor="@color/text"
-            android:textColorHint="@color/gray"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelTeacher" />
-
-        <!-- Day -->
-        <TextView
-            android:id="@+id/labelDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Day"
-            android:textColor="@color/text"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etTeacher" />
+        <!-- Subject Spinner -->
 
         <Spinner
-            android:id="@+id/spDay"
+            android:id="@+id/spSubject"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginTop="6dp"
@@ -124,99 +73,26 @@
             android:paddingEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelDay" />
+            app:layout_constraintTop_toBottomOf="@id/labelSubject" />
 
-        <!-- Start Time -->
+        <!-- Information -->
+
         <TextView
-            android:id="@+id/labelStartTime"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvInformation"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Start Time (e.g., 09:00 AM)"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_light_blue"
+            android:padding="16dp"
+            android:text="The timetable will automatically assign:\n\n• Monday to Saturday\n• 3 lectures every day\n• Time: 8:30 AM to 11:00 AM\n• 3 fixed classrooms: A-101, A-102, A-103"
             android:textColor="@color/text"
             android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spDay" />
-
-        <EditText
-            android:id="@+id/etStartTime"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/bg_card"
-            android:hint="09:00 AM"
-            android:inputType="textCapCharacters"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
-            android:textColor="@color/text"
-            android:textColorHint="@color/gray"
-            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelStartTime" />
+            app:layout_constraintTop_toBottomOf="@id/spSubject" />
 
-        <!-- End Time -->
-        <TextView
-            android:id="@+id/labelEndTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="End Time (e.g., 10:00 AM)"
-            android:textColor="@color/text"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etStartTime" />
+        <!-- Add Button -->
 
-        <EditText
-            android:id="@+id/etEndTime"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/bg_card"
-            android:hint="10:00 AM"
-            android:inputType="textCapCharacters"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
-            android:textColor="@color/text"
-            android:textColorHint="@color/gray"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelEndTime" />
-
-        <!-- Room Number -->
-        <TextView
-            android:id="@+id/labelRoom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Room Number"
-            android:textColor="@color/text"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etEndTime" />
-
-        <EditText
-            android:id="@+id/etRoom"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/bg_card"
-            android:hint="e.g., A-101"
-            android:inputType="textCapCharacters"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
-            android:textColor="@color/text"
-            android:textColorHint="@color/gray"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/labelRoom" />
-
-        <!-- Add Subject Button -->
         <Button
             android:id="@+id/btnSave"
             android:layout_width="0dp"
@@ -229,7 +105,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etRoom" />
+            app:layout_constraintTop_toBottomOf="@id/tvInformation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>
