@@ -1,4 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Timetable Management App</string>
+    <string name="app_name">AI Timetable Generator</string>
+    <string name="welcome_title">AI Timetable Generator</string>
+    <string name="welcome_subtitle">Plan Smart, Study Better</string>
+
+    <!-- Home Actions -->
+    <string name="action_add_subject">Add Subject</string>
+    <string name="action_timetable">My Timetable</string>
+    <string name="action_progress">Progress</string>
+    <string name="action_generate">Generate</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_timetable">Timetable</string>
+    <string name="nav_subjects">Subjects</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Metric Badges on Home -->
+    <string name="badge_student">Student</string>
+    <string name="badge_subjects">Subjects</string>
+    <string name="badge_calendar">Calendar</string>
+
+    <!-- Labels & Form -->
+    <string name="label_todays_schedule">Today\'s Schedule</string>
+    <string name="no_classes_today">No classes scheduled today.</string>
+    <string name="title_add_subject">Add Subject</string>
+    <string name="title_my_subjects">My Subjects</string>
+    <string name="title_my_timetable">My Timetable</string>
+    <string name="title_subject_progress">Subject Progress</string>
+    <string name="title_settings">Settings</string>
+
+    <string name="label_subject_name">Subject Name</string>
+    <string name="hint_subject_name">Enter subject name</string>
+    <string name="label_teacher_name">Teacher Name</string>
+    <string name="hint_teacher_name">Enter teacher name</string>
+    <string name="label_day">Day</string>
+    <string name="hint_select_day">Select day</string>
+    <string name="label_start_time">Start Time</string>
+    <string name="hint_start_time">Select start time</string>
+    <string name="label_end_time">End Time</string>
+    <string name="hint_end_time">Select end time</string>
+    <string name="label_room_number">Room Number</string>
+    <string name="hint_room_number">Enter room number</string>
+    <string name="btn_add_subject">ADD SUBJECT</string>
+    <string name="no_subjects_yet">No subjects added yet.</string>
+
+    <!-- Settings -->
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_dark_mode">Dark Mode</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_class_reminder">Class Reminder</string>
+    <string name="settings_about_app">About App</string>
+    <string name="app_version">Version 1.0</string>
+
+    <string name="toast_enter_subject_name">Enter subject name</string>
+    <string name="toast_subject_added">Subject added successfully</string>
+    <string name="toast_timetable_generated">Timetable generated successfully.</string>
+    <string name="toast_no_subjects">Please add at least one subject first.</string>
+    <string name="btn_load_demo">Load Sample Classes</string>
+    <string name="btn_clear_data">Clear All Classes</string>
+    <string name="toast_data_cleared">All classes cleared.</string>
+    <string name="toast_data_loaded">Sample classes loaded.</string>
 </resources>

@@ -1,83 +1,1006 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:fillViewport="true">
+    android:background="@color/background_gray">
 
+    <!-- Top App Bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="32dp">
+        android:id="@+id/headerBar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/primary_blue"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:text="←  Home"
-            android:textColor="@color/blue"
+            android:layout_height="wrap_content"
+            android:text="← Back"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnAddMore"
+        <TextView
+            android:id="@+id/tvHeaderTitle"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:backgroundTint="@color/blue"
-            android:text="+ Add Subject"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/title_my_timetable"
             android:textColor="@color/white"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/btnBack"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btnBack" />
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Weekly Timetable"
-            android:textColor="@color/blue"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnBack" />
-
-        <TextView
-            android:id="@+id/tvSubtitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Monday to Saturday Schedule"
-            android:textColor="@color/gray"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
-        <LinearLayout
-            android:id="@+id/llTimetableContainer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:id="@+id/scrollViewTimetable"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerBar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="14dp">
+
+            <!-- Empty State -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutEmptyTimetable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:elevation="2dp"
+                android:padding="28dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvEmptyMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/no_subjects_yet"
+                    android:textColor="@color/text_gray"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnEmptyAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/primary_blue"
+                    android:text="+ ADD SUBJECT"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvEmptyMessage" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Timetable Weekly Grid Card -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardWeeklyGrid"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:elevation="2dp"
+                android:padding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layoutEmptyTimetable">
+
+                <!-- Header Row: Time | Mon | Tue | Wed | Thu | Fri | Sat -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/rowHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/bg_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/thTime"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Time"
+                        android:textColor="@color/primary_blue"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@id/thMon"
+                        app:layout_constraintHorizontal_weight="1.1"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/thMon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Mon"
+                        android:textColor="@color/primary_blue"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@id/thTue"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/thTime" />
+
+                    <TextView
+                        android:id="@+id/thTue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Tue"
+                        android:textColor="@color/primary_blue"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@id/thWed"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/thMon" />
+
+                    <TextView
+                        android:id="@+id/thWed"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Wed"
+                        android:textColor="@color/primary_blue"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@id/thThu"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/thTue" />
+
+                    <TextView
+                        android:id="@+id/thThu"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Thu"
+                        android:textColor="@color/primary_blue"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@id/thFri"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/thWed" />
+
+                    <TextView
+                        android:id="@+id/thFri"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Fri"
+                        android:textColor="@color/primary_blue"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@id/thSat"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/thThu" />
+
+                    <TextView
+                        android:id="@+id/thSat"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Sat"
+                        android:textColor="@color/primary_blue"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/thFri" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 9:00 Slot -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/row9"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rowHeader">
+
+                    <TextView
+                        android:id="@+id/tvSlot9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="9:00"
+                        android:textColor="@color/text_gray"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toStartOf="@id/cell_mon_9"
+                        app:layout_constraintHorizontal_weight="1.1"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_mon_9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_tue_9"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/tvSlot9"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_tue_9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_wed_9"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_mon_9"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_wed_9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_thu_9"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_tue_9"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_thu_9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_fri_9"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_wed_9"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_fri_9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_sat_9"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_thu_9"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_sat_9"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_fri_9"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 10:00 Slot -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/row10"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/row9">
+
+                    <TextView
+                        android:id="@+id/tvSlot10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="10:00"
+                        android:textColor="@color/text_gray"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toStartOf="@id/cell_mon_10"
+                        app:layout_constraintHorizontal_weight="1.1"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_mon_10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_tue_10"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/tvSlot10"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_tue_10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_wed_10"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_mon_10"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_wed_10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_thu_10"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_tue_10"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_thu_10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_fri_10"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_wed_10"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_fri_10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_sat_10"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_thu_10"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_sat_10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_fri_10"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 11:00 Slot -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/row11"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/row10">
+
+                    <TextView
+                        android:id="@+id/tvSlot11"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="11:00"
+                        android:textColor="@color/text_gray"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toStartOf="@id/cell_mon_11"
+                        app:layout_constraintHorizontal_weight="1.1"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_mon_11"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_tue_11"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/tvSlot11"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_tue_11"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_wed_11"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_mon_11"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_wed_11"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_thu_11"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_tue_11"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_thu_11"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_fri_11"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_wed_11"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_fri_11"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_sat_11"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_thu_11"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_sat_11"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_fri_11"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 12:00 Slot -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/row12"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/row11">
+
+                    <TextView
+                        android:id="@+id/tvSlot12"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="12:00"
+                        android:textColor="@color/text_gray"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toStartOf="@id/cell_mon_12"
+                        app:layout_constraintHorizontal_weight="1.1"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_mon_12"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_tue_12"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/tvSlot12"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_tue_12"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_wed_12"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_mon_12"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_wed_12"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_thu_12"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_tue_12"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_thu_12"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_fri_12"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_wed_12"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_fri_12"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_sat_12"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_thu_12"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_sat_12"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_fri_12"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 1:00 Slot -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/row1"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/row12">
+
+                    <TextView
+                        android:id="@+id/tvSlot1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="1:00"
+                        android:textColor="@color/text_gray"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toStartOf="@id/cell_mon_1"
+                        app:layout_constraintHorizontal_weight="1.1"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_mon_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_tue_1"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/tvSlot1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_tue_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_wed_1"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_mon_1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_wed_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_thu_1"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_tue_1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_thu_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_fri_1"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_wed_1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_fri_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_sat_1"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_thu_1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_sat_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_fri_1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 2:00 Slot -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/row2"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/row1">
+
+                    <TextView
+                        android:id="@+id/tvSlot2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="2:00"
+                        android:textColor="@color/text_gray"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toStartOf="@id/cell_mon_2"
+                        app:layout_constraintHorizontal_weight="1.1"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_mon_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_tue_2"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/tvSlot2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_tue_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_wed_2"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_mon_2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_wed_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_thu_2"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_tue_2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_thu_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_fri_2"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_wed_2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_fri_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_sat_2"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_thu_2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_sat_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_fri_2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 3:00 Slot -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/row3"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/row2">
+
+                    <TextView
+                        android:id="@+id/tvSlot3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="3:00"
+                        android:textColor="@color/text_gray"
+                        android:textSize="11sp"
+                        app:layout_constraintEnd_toStartOf="@id/cell_mon_3"
+                        app:layout_constraintHorizontal_weight="1.1"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_mon_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_tue_3"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/tvSlot3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_tue_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_wed_3"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_mon_3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_wed_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_thu_3"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_tue_3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_thu_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_fri_3"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_wed_3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_fri_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cell_sat_3"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_thu_3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cell_sat_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1.0"
+                        app:layout_constraintStart_toEndOf="@id/cell_fri_3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Detailed Day-Wise List Section -->
+            <TextView
+                android:id="@+id/tvDetailedHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Day-Wise Class Schedule"
+                android:textColor="@color/text_dark"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardWeeklyGrid" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerDaySchedule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDetailedHeading" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

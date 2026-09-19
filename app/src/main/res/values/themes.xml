@@ -1,12 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.MAD_ASSIGNMENT" parent="Theme.Material3.Light.NoActionBar">
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">@color/blue</item>
-        <item name="android:navigationBarColor">@color/white</item>
-        <item name="android:windowActionModeOverlay">true</item>
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorSecondary">@color/blue</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.AITimetable" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="android:windowBackground">@color/background_gray</item>
+        <item name="statusBarBackground">@color/primary_blue</item>
     </style>
-    <style name="Theme.Mad_assignment" parent="Theme.MAD_ASSIGNMENT" />
 </resources>

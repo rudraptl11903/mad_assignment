@@ -1,12 +1,53 @@
-# Add project specific R8 rules here.
-# AGP will combine all keep rule files in src/main/keepRules to pass to R8
-#
-# For more details, see
-#   https://d.android.com/r/tools/r8/keep-rules
+# ==============================================================================
+# AI Timetable Generator - Keep Rules (R8 / ProGuard Configuration)
+# Author: Rudra Patel
+# Description: Configuration rules to preserve class names, fields, and methods
+#              during R8 code shrinking, optimization, and obfuscation.
+# ==============================================================================
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# ------------------------------------------------------------------------------
+# 1. Android & Jetpack Architecture Components
+# ------------------------------------------------------------------------------
+# Preserve all Activity classes and fragments declared in the application
+-keep public class * extends androidx.appcompat.app.AppCompatActivity
+-keep public class * extends androidx.fragment.app.Fragment
+-keep public class * extends android.app.Application
+
+# Preserve custom views and their standard XML layout constructors
+-keepclassmembers class * extends android.view.View {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+# Preserve XML onClick handler methods defined in Activity classes
+-keepclassmembers class * extends android.app.Activity {
+    public void *(android.view.View);
+}
+
+# ------------------------------------------------------------------------------
+# 2. Data Models & JSON Serialization (Subject Entity)
+# ------------------------------------------------------------------------------
+# The Subject data class is serialized/deserialized to SharedPreferences via JSON.
+# We must keep all fields and default constructors to prevent serialization errors.
+-keep class com.example.aitimetable.Subject {
+    <fields>;
+    <init>(...);
+    public *;
+}
+
+# Keep the repository methods used throughout the app
+-keep class com.example.aitimetable.SubjectRepository {
+    public <init>(android.content.Context);
+    public *;
+}
+
+# ------------------------------------------------------------------------------
+# 3. Kotlin Metadata & Coroutines / Standard Library
+# ------------------------------------------------------------------------------
+-keepclassmembers class kotlin.Metadata {
+    public <methods>;
+}
+
+-dontwarn kotlin.**
+-dontwarn androidx.**

@@ -1,19 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-   Sample data extraction rules file; uncomment and customize as necessary.
-   See https://developer.android.com/about/versions/12/backup-restore#xml-changes
-   for details.
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Data extraction rules for Android 12 (API level 31) and higher
+   Specifies rules for cloud backups and device-to-device transfers
+   See: https://developer.android.com/about/versions/12/backup-restore#xml-changes
 -->
 <data-extraction-rules>
     <cloud-backup>
-        <!-- TODO: Use <include> and <exclude> to control what is backed up.
-        <include .../>
-        <exclude .../>
-        -->
+        <!-- Preserve timetable preferences across Google cloud backup -->
+        <include domain="sharedpref" path="timetable_prefs.xml" />
+        <include domain="sharedpref" path="app_settings.xml" />
     </cloud-backup>
-    <!--
     <device-transfer>
-        <include .../>
-        <exclude .../>
+        <!-- Allow complete timetable migration when student switches devices -->
+        <include domain="sharedpref" path="timetable_prefs.xml" />
+        <include domain="sharedpref" path="app_settings.xml" />
     </device-transfer>
-    -->
 </data-extraction-rules>

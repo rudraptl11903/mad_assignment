@@ -1,11 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Brand Blues -->
+    <color name="blue">#2196F3</color>
+    <color name="primary_blue">#1976D2</color>
+    <color name="primary_dark_blue">#0D47A1</color>
+    <color name="accent_blue">#2196F3</color>
+    <color name="light_blue_bg">#E3F2FD</color>
+    <color name="light_blue_pill">#D0E8FF</color>
+    <color name="notification_red">#EF4444</color>
 
-    <color name="blue">#1976D2</color>
-    <color name="background">#F5F9FF</color>
-    <color name="light_blue">#EAF4FF</color>
-    <color name="white">#FFFFFF</color>
-    <color name="text">#212121</color>
-    <color name="gray">#757575</color>
-    <color name="black">#000000</color>
-    <color name="border">#DCE8F5</color>
+    <!-- Neutrals & Backgrounds -->
+    <color name="background">#F4F7FB</color>
+    <color name="background_gray">#F4F7FB</color>
+    <color name="card_white">#FFFFFF</color>
+    <color name="border">#E2E8F0</color>
+    <color name="card_border">#E2E8F0</color>
+    <color name="divider_color">#EEEEEE</color>
+    <color name="grid_line">#E2E8F0</color>
+
+    <!-- Typography -->
+    <color name="text">#1E293B</color>
+    <color name="text_dark">#1E293B</color>
+    <color name="gray">#64748B</color>
+    <color name="text_gray">#64748B</color>
+    <color name="text_light_gray">#94A3B8</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Subject Badges & Progress Bar Colors -->
+    <color name="badge_ad">#2196F3</color>
+    <color name="badge_ml">#4CAF50</color>
+    <color name="badge_cn">#FF9800</color>
+    <color name="badge_db">#9C27B0</color>
+    <color name="badge_os">#E91E63</color>
+    <color name="badge_default">#607D8B</color>
+
+    <!-- Timetable Pills (Light tones matching image) -->
+    <color name="pill_ad_bg">#D4E9FD</color>
+    <color name="pill_ad_text">#1565C0</color>
+    <color name="pill_ml_bg">#D7F3E3</color>
+    <color name="pill_ml_text">#2E7D32</color>
+    <color name="pill_cn_bg">#FFE8D1</color>
+    <color name="pill_cn_text">#E65100</color>
+    <color name="pill_db_bg">#F2E0F7</color>
+    <color name="pill_db_text">#7B1FA2</color>
+    <color name="pill_os_bg">#FDDCDC</color>
+    <color name="pill_os_text">#C2185B</color>
 </resources>
