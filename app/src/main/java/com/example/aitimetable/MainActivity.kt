@@ -39,21 +39,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, AddSubjectActivity::class.java))
         }
 
-        // 4 Main Dashboard Action Cards
+        // Main Dashboard Action Cards
         findViewById<ConstraintLayout>(R.id.cardActionAddSubject).setOnClickListener {
             startActivity(Intent(this, AddSubjectActivity::class.java))
         }
 
         findViewById<ConstraintLayout>(R.id.cardActionTimetable).setOnClickListener {
             startActivity(Intent(this, TimetableActivity::class.java))
-        }
-
-        findViewById<ConstraintLayout>(R.id.cardActionProgress).setOnClickListener {
-            startActivity(Intent(this, ProgressActivity::class.java))
-        }
-
-        findViewById<ConstraintLayout>(R.id.cardActionGenerate).setOnClickListener {
-            generateTimetable()
         }
 
         // Bottom Navigation Bar

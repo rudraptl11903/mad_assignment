@@ -276,68 +276,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Card 3: Progress -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cardActionProgress"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="6dp"
-                android:background="@drawable/bg_card"
-                android:clickable="true"
-                android:elevation="2dp"
-                android:focusable="true"
-                app:layout_constraintEnd_toStartOf="@id/cardActionGenerate"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardActionAddSubject">
-
-                <TextView
-                    android:id="@+id/tvProgressText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/action_progress"
-                    android:textColor="@color/text_dark"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- Card 4: Generate -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cardActionGenerate"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_card"
-                android:clickable="true"
-                android:elevation="2dp"
-                android:focusable="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@id/cardActionProgress"
-                app:layout_constraintTop_toBottomOf="@id/cardActionTimetable">
-
-                <TextView
-                    android:id="@+id/tvGenerateText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/action_generate"
-                    android:textColor="@color/primary_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <!-- Today's Schedule Section -->
             <TextView
                 android:id="@+id/tvTodayHeading"
@@ -349,7 +287,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardActionProgress" />
+                app:layout_constraintTop_toBottomOf="@id/cardActionAddSubject" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardTodaySchedule"
