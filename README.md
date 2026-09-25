@@ -35,7 +35,7 @@ The user can enter:
   ### Screenshots
 |  |  |  |
 | :---: | :---: | :---: |
-| <img src="Screenshots/01.png" width="250"> | <img src="Screenshots/02.png" width="250"> | <img src="Screenshots/03.png" width="250"> |
+| <img src="mad phota/Screenshot_20260925_085423.png" width="300"> | <img src="mad phota/Screenshot_20260925_085451.png" width="300"> | <img src="mad phota/Screenshot_20260925_085524.png" width="300"> |
 
 
 ### My Timetable
