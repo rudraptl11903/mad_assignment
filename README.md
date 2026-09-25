@@ -32,6 +32,12 @@ The user can enter:
 - End time
 - Room number
 
+  ### Screenshots
+|  |  |  |
+| :---: | :---: | :---: |
+| <img src="Screenshots/01.png" width="250"> | <img src="Screenshots/02.png" width="250"> | <img src="Screenshots/03.png" width="250"> |
+
+
 ### My Timetable
 Displays timetable information in a simple weekly format.
 
